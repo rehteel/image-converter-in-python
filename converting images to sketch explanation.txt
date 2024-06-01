@@ -1,0 +1,136 @@
+converting images to sketch using python: explanation
+
+~~~~~~~~~
+THIS WILL BE THE CODE
+~~~~~~~~~
+-----------------------
+THIS WILL BE THE EXPLANATION
+-----------------------
+
+
+Install cv2 library by enetering this into windows command prompt:
+
+pip install opencv-python-headless
+
+
+
+
+
+
+
+First import the cv2 library
+~~~~~~~~~~
+import cv2
+~~~~~~~~~~
+----------------------
+The cv2 library in Python is part of OpenCV (Open Source Computer Vision Library), which is a comprehensive library for computer vision, machine learning, and image processing. Here are some key points about cv2:
+
+Image and Video Processing: cv2 allows you to read, write, and process images and videos. You can perform operations like resizing, cropping, rotating, and transforming images.
+
+Object Detection and Recognition: It includes tools for detecting and recognizing objects within images, such as faces, pedestrians, or even specific features using techniques like Haar cascades and deep learning models.
+
+Image Filtering: cv2 provides a wide range of filters for smoothing, sharpening, and edge detection, such as Gaussian blur, Sobel filters, and more.
+
+Feature Detection: It offers methods for detecting features like edges, corners, and blobs using algorithms like Canny edge detection, Harris corner detection, and blob detection.
+
+Machine Learning: OpenCV integrates various machine learning algorithms for classification, clustering, and object detection tasks.
+
+Geometric Transformations: You can perform transformations such as translation, rotation, scaling, and perspective transformations.
+
+Color Space Conversion: The library supports converting images between different color spaces, such as from BGR to grayscale or HSV.
+-----------------------
+
+
+
+
+Read an Image from a File:
+~~~~~~~~~~~
+image = cv2.imread("bunny1.jpg")
+~~~~~~~~~~
+-----------------------
+image = cv2.imread("bunny1.jpg"): This line reads the image file named "bunny1.jpg" and stores it in the variable image. The image is now ready for processing.
+----------------------
+
+
+
+Convert the Image to Grayscale:
+~~~~~~~~~~
+grey_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+~~~~~~~~~~
+--------------------------------
+grey_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY): This line converts the color image to a grayscale image (black and white) and stores it in the variable grey_img. The cv2.COLOR_BGR2GRAY part specifies the conversion type.
+--------------------------------
+
+
+
+Invert the Grayscale Image:
+~~~~~~~~~~
+invert = cv2.bitwise_not(grey_img)
+~~~~~~~~~~
+----------------------------------
+invert = cv2.bitwise_not(grey_img): This line inverts the grayscale image. In an inverted image, dark areas become light, and light areas become dark. This is stored in the variable invert.
+---------------------------------
+
+
+
+
+Blur the Inverted Image:
+~~~~~~~~~~~~~
+blur = cv2.GaussianBlur(invert, (21, 21), 0)
+~~~~~~~~~~~~~
+------------------------
+blur = cv2.GaussianBlur(invert, (21, 21), 0): This line applies a Gaussian blur to the inverted image. The blur makes the edges smooth. The (21, 21) part specifies the size of the blur kernel (how much to blur), and 0 is the standard deviation in the x-axis direction. The result is stored in the variable blur.
+-------------------------
+
+
+
+
+
+Invert the Blurred Image:
+~~~~~~~~~~~~
+invertedblur = cv2.bitwise_not(blur)
+~~~~~~~~~~~~~
+-----------------------------------------
+invertedblur = cv2.bitwise_not(blur): This line inverts the blurred image, reversing the effect of the initial inversion. This is stored in the variable invertedblur.
+-----------------------------------------
+
+
+
+Create the Sketch Effect:
+~~~~~~~~~~~~~~~~
+sketch = cv2.divide(grey_img, invertedblur, scale=256.0)
+~~~~~~~~~~~~~~~~
+------------------------------------------
+sketch = cv2.divide(grey_img, invertedblur, scale=256.0): This line creates a sketch effect by dividing the grayscale image by the inverted blurred image. The scale=256.0 part ensures the pixel values are scaled properly to get a sketch-like appearance. The result is stored in the variable sketch.
+------------------------------------------
+
+
+Store it in file:
+~~~~~~~~~~~~~~~
+cv2.imwrite("BabyBunny.sketch.jpg", sketch)
+~~~~~~~~~~~~~~~~
+---------------------------
+cv2.imwrite("bunny1_sketch.jpg", sketch): This line saves the sketch image to a file named "bunny1_sketch.jpg" in the current working directory.
+--------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
